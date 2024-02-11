@@ -1,4 +1,4 @@
-import { Center, Heading } from '@chakra-ui/react';
+import { Center, Heading, Flex, List } from '@chakra-ui/react';
 import { data } from '../utils/data';
 
 export const RecipeListPage = () => {
