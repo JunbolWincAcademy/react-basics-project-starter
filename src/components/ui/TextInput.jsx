@@ -6,10 +6,10 @@ export const TextInput = ({ changeFn }) => {
 
     <Input 
     variant='filled'
-    width='auto'
+    width="300px"
     placeholder='Type here'
     marginBottom={"2rem"} //only this is pushing the drinks <ul> down 
-    onChange={changeFn}
+    onChange={changeFn}// if there any input activate the handleChange function
     />
     
   );

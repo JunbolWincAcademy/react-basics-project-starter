@@ -3,8 +3,9 @@ import { RecipeSearch } from './pages/RecipeSearch';
 import { RecipeChoice } from './pages/RecipeChoice';
 import { RecipeListPage } from './pages/RecipeListPage';
 import { data } from './utils/data';
+import './App.css';
 
-import { Center, Heading, Flex, Text, Square, Circle } from '@chakra-ui/react';
+import { Center, Heading, Flex, Text, Square, Circle, Button } from '@chakra-ui/react';
 
 export const App = () => {
   const greeting = 'Bolivar Restaurant';
@@ -12,41 +13,28 @@ export const App = () => {
   const [userRecipe, setUserRecipe] = useState(null);
 
   return (
-    <div className="App">
+    <Center flexDir="column" bg="lightblue" textAlign="center" justifyContent="center" width="100%" height="auto" padding="50px">
       {userRecipe ? (
         <>
-        <Center backgroundColor={blue}>
-        <Heading size={'xl'} color={'black.200'} marginBottom={'2rem'}>
+          <Heading size={'xl'} color={'black.200'} marginTop="4rem" marginBottom={'2rem'}>
             {greeting}
           </Heading>
           {/* // Only render DrinkChoice if a drink is selected */}
           <RecipeChoice recipe={userRecipe} clickFn={setUserRecipe} />
 
-          <button className="button" onClick={() => setUserRecipe(null)}>
+          <Button w="150px" marginBottom={'4rem'} onClick={() => setUserRecipe(null)}>
             Reset the choice
-          </button>
-
-
-
-
-        </Center>
-        
+          </Button>
         </>
       ) : (
         // if not render the following:
         <>
-        <Center display="flex" flexDir="column"backgroundColor="lightblue" >
-        <Heading size={'2xl'} color={'black.200'} marginBottom={'2rem'} mb="50px">
+          <Heading size={'2xl'} color={'black.200'} marginTop="2rem" marginBottom={'2rem'}>
             {greeting}
           </Heading>
-       
           <RecipeSearch clickFn={setUserRecipe} />
-
-
-        </Center>
-         
         </>
       )}
-    </div>
+    </Center>
   );
 };
