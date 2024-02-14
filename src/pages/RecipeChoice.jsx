@@ -71,8 +71,8 @@ export const RecipeChoice = ({ clickFn, recipe }) => {
           {recipe.recipe.ingredientLines}
         </Text>
 
-        <Flex direction="column" mt="3">
-          <Text fontWeight="400">Total Nutrients:</Text>
+        <Flex direction="column" mt="3" textAlign="left">
+          <Text fontWeight="600">Total Nutrients:</Text>
           <Text fontWeight="400">
             kcal: {recipe.recipe.totalNutrients.ENERC_KCAL.quantity} {recipe.recipe.totalNutrients.ENERC_KCAL.unit}
           </Text>
