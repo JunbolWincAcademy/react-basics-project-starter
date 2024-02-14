@@ -13,10 +13,10 @@ export const App = () => {
   const [userRecipe, setUserRecipe] = useState(null);
 
   return (
-    <Center flexDir="column" bg="lightblue" textAlign="center" justifyContent="center" width="100%" height="auto" padding="50px">
+    <Center flexDir="column" bg="orange.100" textAlign="center" justifyContent="center" width="100%" height="auto" padding="50px">
       {userRecipe ? (
         <>
-          <Heading size={'xl'} color={'black.200'} marginTop="4rem" marginBottom={'2rem'}>
+          <Heading size={'xl'} color={'red.600'} marginTop="4rem" marginBottom={'2rem'}>
             {greeting}
           </Heading>
           {/* // Only render DrinkChoice if a drink is selected */}
@@ -29,7 +29,7 @@ export const App = () => {
       ) : (
         // if not render the following:
         <>
-          <Heading size={'2xl'} color={'black.200'} marginTop="2rem" marginBottom={'2rem'}>
+          <Heading size={'2xl'} color={'red.600'} marginTop="2rem" marginBottom={'2rem'}>
             {greeting}
           </Heading>
           <RecipeSearch clickFn={setUserRecipe} />
@@ -38,3 +38,5 @@ export const App = () => {
     </Center>
   );
 };
+
+//---------------NOTES-------------------------

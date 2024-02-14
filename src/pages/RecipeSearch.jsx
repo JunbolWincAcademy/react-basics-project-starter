@@ -18,7 +18,7 @@ export const RecipeSearch = ({ clickFn }) => {
 
   // Filter the drinks based on the search input
   const matchedRecipes = data.hits.filter((hit) => {// hit is each item inside the array hits
-    return hit.recipe.label.toLowerCase().startsWith(searchField.toLowerCase());
+    return hit.recipe.label.toLowerCase().includes(searchField.toLowerCase());
     //hre I had include before but it was wrong. The method
     //startsWith ensure that only select the drinks starting with letter type by the user
   });

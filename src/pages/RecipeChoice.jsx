@@ -20,16 +20,18 @@ import {
 export const RecipeChoice = ({ clickFn, recipe }) => {
   // Check if cautions exist and are not empty, then join them into a string
   const cautionsString = recipe.recipe.cautions?.length > 0 ? recipe.recipe.cautions.join(', ') : '';
+  // here I am using a Optional Chaining (?.) so on the left I evaluate this condition: length > o and if that is true
+  // show the strings separated by commas join(',') IF NOT (:) return and empty string which caused cautionsString to be Falsy
+  // and the variable wont render because React ignore Falsy variables
 
-  // Filter the healthLabels for "Vegetarian" or "Vegan"
-  const filteredLabelVegetarian = recipe.recipe.healthLabels.filter((label) => label === 'Vegetarian');
-  const filteredLabelVegan = recipe.recipe.healthLabels.filter((label) => label === 'Vegan');
+  // Check if healthLabelsexist and are not empty, then join them into a string
+  const healthLabelsString = recipe.recipe.healthLabels?.length > 0 ? recipe.recipe.healthLabels.join(', ') : '';
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
-    <Center flexDir="column" gap={4} mb="4rem">
-      <Flex bgColor="white" flexDir="column" borderRadius="10px" width="500px" height="1300px" alignItems="center">
+    <Center flexDir="column" gap={4} mb="2rem">
+      <Flex bgColor="white" flexDir="column" borderRadius="10px" width="500px" height="90%px" alignItems="center">
         {/*because I am using <Center>, this replace the use of fragments*?/}
         <Heading>Your choice:{drink.name}</Heading> {/* Displaying the drink's name */}
         {/* Displaying the drink's image */}
@@ -53,22 +55,27 @@ export const RecipeChoice = ({ clickFn, recipe }) => {
         )}
         <Text fontWeight="400">{recipe.recipe.mealType}</Text>
         <Text fontWeight="400">{recipe.recipe.dishType}</Text>
-        <Text fontWeight="600" mt="3">
-          Health Labels:
+
+        {healthLabelsString && (
+          <Flex flexDir="column" width="90%">
+            <Text fontWeight="600" mt="3">
+              Health Labels:
+            </Text>
+            <Text fontWeight="400">{healthLabelsString}</Text>
+          </Flex>
+        )}
+        <Text fontWeight="600" mt="2">
+          Ingredients:
         </Text>
-        <Text fontWeight="400" padding="4">
-          {recipe.recipe.healthLabels}
-        </Text>
-        <Text fontWeight="600">Ingredients:</Text>
         <Text fontWeight="400" textAlign="left" width="200px">
           {recipe.recipe.ingredientLines}
         </Text>
 
         <Text fontWeight="400" mt="3">
-          Total Cooking Time:{recipe.recipe.totalTime}
+          Total Cooking Time:{recipe.recipe.totalTime}min
         </Text>
-        <Flex mt={10}>
-          <Button onClick={onOpen} mr={4}>
+        <Flex margin={5}>
+          <Button colorScheme="red" onClick={onOpen} mr={4}>
             {/*in order for this Button to work I needed ot add Button in import list from Chakra it wasn't there}*/}
             Confirm order
           </Button>
@@ -97,7 +104,7 @@ export const RecipeChoice = ({ clickFn, recipe }) => {
               </ModalBody>
 
               <ModalFooter>
-                <Button colorScheme="teal" mr={4}>
+                <Button colorScheme="red" mr={4}>
                   Confirm
                 </Button>
                 <Button variant="ghost" onClick={onClose}>
@@ -111,3 +118,33 @@ export const RecipeChoice = ({ clickFn, recipe }) => {
     </Center>
   );
 };
+
+/*
+<Flex direction="column" mt="3">
+  <Text fontWeight="400">
+    Total Nutrients:
+  </Text>
+  <Text fontWeight="400">
+    kcal: {recipe.recipe.totalNutrients.ENERC_KCAL.quantity} {recipe.recipe.totalNutrients.ENERC_KCAL.unit}
+  </Text>
+  <Text fontWeight="400">
+    Protein: {recipe.recipe.totalNutrients.PROCNT.quantity} {recipe.recipe.totalNutrients.PROCNT.unit}
+  </Text>
+  <Text fontWeight="400">
+    Fat: {recipe.recipe.totalNutrients.FAT.quantity} {recipe.recipe.totalNutrients.FAT.unit}
+  </Text>
+  <Text fontWeight="400">
+    Carbs: {recipe.recipe.totalNutrients.CHOCDF.quantity} {recipe.recipe.totalNutrients.CHOCDF.unit}
+  </Text>
+  <Text fontWeight="400">
+    Cholesterol: {recipe.recipe.totalNutrients.CHOLE.quantity} {recipe.recipe.totalNutrients.CHOLE.unit}
+  </Text>
+  <Text fontWeight="400">
+    Sodium: {recipe.recipe.totalNutrients.NA.quantity} {recipe.recipe.totalNutrients.NA.unit}
+  </Text>
+</Flex>
+
+
+
+
+*/
