@@ -71,6 +71,28 @@ export const RecipeChoice = ({ clickFn, recipe }) => {
           {recipe.recipe.ingredientLines}
         </Text>
 
+        <Flex direction="column" mt="3">
+          <Text fontWeight="400">Total Nutrients:</Text>
+          <Text fontWeight="400">
+            kcal: {recipe.recipe.totalNutrients.ENERC_KCAL.quantity} {recipe.recipe.totalNutrients.ENERC_KCAL.unit}
+          </Text>
+          <Text fontWeight="400">
+            Protein: {recipe.recipe.totalNutrients.PROCNT.quantity} {recipe.recipe.totalNutrients.PROCNT.unit}
+          </Text>
+          <Text fontWeight="400">
+            Fat: {recipe.recipe.totalNutrients.FAT.quantity} {recipe.recipe.totalNutrients.FAT.unit}
+          </Text>
+          <Text fontWeight="400">
+            Carbs: {recipe.recipe.totalNutrients.CHOCDF.quantity} {recipe.recipe.totalNutrients.CHOCDF.unit}
+          </Text>
+          <Text fontWeight="400">
+            Cholesterol: {recipe.recipe.totalNutrients.CHOLE.quantity} {recipe.recipe.totalNutrients.CHOLE.unit}
+          </Text>
+          <Text fontWeight="400">
+            Sodium: {recipe.recipe.totalNutrients.NA.quantity} {recipe.recipe.totalNutrients.NA.unit}
+          </Text>
+        </Flex>
+
         <Text fontWeight="400" mt="3">
           Total Cooking Time:{recipe.recipe.totalTime}min
         </Text>
@@ -118,33 +140,3 @@ export const RecipeChoice = ({ clickFn, recipe }) => {
     </Center>
   );
 };
-
-/*
-<Flex direction="column" mt="3">
-  <Text fontWeight="400">
-    Total Nutrients:
-  </Text>
-  <Text fontWeight="400">
-    kcal: {recipe.recipe.totalNutrients.ENERC_KCAL.quantity} {recipe.recipe.totalNutrients.ENERC_KCAL.unit}
-  </Text>
-  <Text fontWeight="400">
-    Protein: {recipe.recipe.totalNutrients.PROCNT.quantity} {recipe.recipe.totalNutrients.PROCNT.unit}
-  </Text>
-  <Text fontWeight="400">
-    Fat: {recipe.recipe.totalNutrients.FAT.quantity} {recipe.recipe.totalNutrients.FAT.unit}
-  </Text>
-  <Text fontWeight="400">
-    Carbs: {recipe.recipe.totalNutrients.CHOCDF.quantity} {recipe.recipe.totalNutrients.CHOCDF.unit}
-  </Text>
-  <Text fontWeight="400">
-    Cholesterol: {recipe.recipe.totalNutrients.CHOLE.quantity} {recipe.recipe.totalNutrients.CHOLE.unit}
-  </Text>
-  <Text fontWeight="400">
-    Sodium: {recipe.recipe.totalNutrients.NA.quantity} {recipe.recipe.totalNutrients.NA.unit}
-  </Text>
-</Flex>
-
-
-
-
-*/
