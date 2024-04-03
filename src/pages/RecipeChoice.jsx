@@ -24,11 +24,18 @@ export const RecipeChoice = ({ clickFn, recipe }) => {
   // show the strings separated by commas join(',') IF NOT (:) return and empty string which caused cautionsString to be Falsy
   // and the variable wont render because React ignore Falsy variables
 
-  // Check if healthLabelsexist and are not empty, then join them into a string
+  // Check if healthLabelsexist and are not empty, then join them to convert it into a string
   const healthLabelsString = recipe.recipe.healthLabels?.length > 0 ? recipe.recipe.healthLabels.join(', ') : '';
 
-  const { isOpen, onOpen, onClose } = useDisclosure();
-
+  const { isOpen, onOpen, onClose } = useDisclosure();  // useDisclosure hook from Chakra UI to handle modal visibility
+/*The `useDisclosure` hook manages the state and functionality needed
+to control the visibility of components like modals. It provides `isOpen` to track
+the visibility state (open or closed), `onOpen` to set `isOpen` to true (open the modal),
+and `onClose` to set `isOpen` to false (close the modal). This hook simplifies the 
+process of handling the open/close state and actions of the modal, making it easier 
+to implement and manage modal behavior in the UI. In the context of the RecipeChoice component, useDisclosure is used to manage the state of the modal that confirms the user's order. When the user clicks the "Confirm order" button, onOpen is called to display the modal. The modal can then be closed either by clicking the "Cancel" button, which calls onClose, or by clicking the close icon in the modal's header, also triggering onClose.  When `isOpen` is true, it triggers the modal to appear on the screen.
+This typically involves displaying an overlay and rendering the modal's content
+in the foreground, allowing the user to interact with it.*/
   return (
     <Center flexDir="column" gap={4} mb="2rem">
       <Flex bgColor="white" flexDir="column" borderRadius="10px" width="500px" height="90%px" alignItems="center">
@@ -42,7 +49,11 @@ export const RecipeChoice = ({ clickFn, recipe }) => {
         {/* Additional paragraph */}
 
         <Text>
-          Your <Text fontWeight="700">{recipe.recipe.label}</Text> will be ready in a few minutes.
+          Your{' '}
+          <Heading size="md" fontWeight="700">
+            {recipe.recipe.label}
+          </Heading>{' '}
+          will be ready in a few minutes.
         </Text>
         <Text fontWeight="400" mt="3">
           {recipe.recipe.dietLabels}
@@ -101,10 +112,7 @@ export const RecipeChoice = ({ clickFn, recipe }) => {
             {/*in order for this Button to work I needed ot add Button in import list from Chakra it wasn't there}*/}
             Confirm order
           </Button>
-          <Button onClick={() => clickFn(null)}>
-            {/*//adding clickFn={null} here fixed the issue, 
-            basically I pass it to this child component DrinkChoice form App I can use it here:  <Button onClick={() => clickFn(null)} variant="ghost">
-            by given null to clickFn in there I reset the choice in here the Modal*/}
+          <Button onClick={() => clickFn(null)}> {/* 🐞adding clickFn={null} here fixed the issue, basically I pass it back to this child component DrinkChoice in App. Is like giving here in the Modal a value of null to userRecipe l*/}
             Change selection
           </Button>
         </Flex>

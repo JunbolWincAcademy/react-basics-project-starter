@@ -1,15 +1,14 @@
-import { Center, Flex, Square, Circle, AbsoluteCenter, Image, Text, Spacer, Box, Button } from '@chakra-ui/react';
-import { data } from '../utils/data';
-export const RecipeItem = ({ clickFn, recipe }) => {
+import { Center, Flex, Image, Text, Box } from '@chakra-ui/react';
 
- const cautionsString = recipe.recipe.cautions?.length > 0 ? recipe.recipe.cautions.join(', ') : '';
+export const RecipeItem = ({ clickFn, recipe }) => {
+  const cautionsString = recipe.recipe.cautions?.length > 0 ? recipe.recipe.cautions.join(', ') : '';
   // Checking in the object properties if cautions exist and are not empty, then join them into a string
- //for objects I need to use .length > 0 to verify their existence, if they do (?) separate them with a comma if they don't (:) return nothing
- //and that is done by: ({cautionsString && <Text>...</Text>}) will ensure that the "Cautions" text is not displayed when there are no cautions.
- //the && evaluates on its self or better say evaluate what is on the left if is true evaluate what is on right (short-circuit-evaluation) 
- //the expression short-circuits (stops) rendering the variable because the code is running the empty string and that is
- //returning a Falsy (false) so cautionsString is Falsy, and the <Text> component is not rendered. React will ignore falsy values and React ignores
- //falsy values.
+  //for objects I need to use .length > 0 to verify their existence, if they do (?) separate them with a comma if they don't (:) return nothing
+  //and that is done by: ({cautionsString && <Text>...</Text>}) will ensure that the "Cautions" text is not displayed when there are no cautions.
+  //the && evaluates on its self or better say evaluate what is on the left if is true evaluate what is on right (short-circuit-evaluation)
+  //the expression short-circuits (stops) rendering the variable because the code is running the empty string and that is
+  //returning a Falsy (false) so cautionsString is Falsy, and the <Text> component is not rendered. React will ignore falsy values and React ignores
+  //falsy values.
 
   // Filter the healthLabels for "Vegetarian" or "Vegan"
   const filteredLabelVegetarian = recipe.recipe.healthLabels.filter((label) => label === 'Vegetarian');
@@ -31,27 +30,23 @@ export const RecipeItem = ({ clickFn, recipe }) => {
           // objectFit="cover"
           onClick={() => clickFn(recipe)}
         >
-          <Image borderRadius="10px 10px 0px 0px" width="250px" height="180px" src={recipe.recipe.image}  mb="3"></Image>
+          <Image borderRadius="10px 10px 0px 0px" width="250px" height="180px" src={recipe.recipe.image} mb="3"></Image>
           {/* <Spacer /> */}
           <Text fontWeight="700" marginBottom={3}>
             {recipe.recipe.label}
           </Text>
           <Text fontWeight="400">{recipe.recipe.dietLabels}</Text>
-            {/* Conditionally render cautions only if they exist */}
-            {cautionsString && (
+          {/* Conditionally render cautions only if they exist */}
+          {cautionsString && (
             <Text fontWeight="400" color="red">
               Cautions: {cautionsString}
             </Text>
           )}
           <Text fontWeight="400">{recipe.recipe.mealType}</Text>
           <Text fontWeight="400">{recipe.recipe.dishType}</Text>
-          <Flex  width= "100%" color="green" flexDir="row"  textAlign="center" fontWeight="400" fontSize="sm" justifyContent="center" mt="2">
-          <Text ml="2">
-            {filteredLabelVegetarian}
-          </Text>
-          <Text ml="2">
-            {filteredLabelVegan}
-          </Text>
+          <Flex width="100%" color="green" flexDir="row" textAlign="center" fontWeight="400" fontSize="sm" justifyContent="center" mt="2">
+            <Text ml="2">{filteredLabelVegetarian}</Text>
+            <Text ml="2">{filteredLabelVegan}</Text>
           </Flex>
         </Box>
       </Center>

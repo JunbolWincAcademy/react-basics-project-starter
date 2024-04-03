@@ -1,21 +1,24 @@
-import { data } from '../utils/data';
 import { RecipeItem } from './RecipeItem';
-import { Center, Heading, Flex, List, Text, } from '@chakra-ui/react';
+import { Flex, List } from '@chakra-ui/react';
 
-export const RecipeListPage = ({ clickFn, recipes}) => {
-  // You can play around with the console log, but ultimately remove it once you are done
+export const RecipeListPage = ({ clickFn, recipes }) => {
+  // Receives clickFn and recipes as props. clickFn is a function to handle recipe selection,
+  // and recipes is an array of recipe objects to display.
 
-  const recipeItems = recipes.map((item,index) => (
-      <List styleType="none" key={index}>
-        {/*in order to get rid off the bullets I had to use the List comp from Chakra and give it that style */}
-        <RecipeItem clickFn={clickFn} recipe={item} />
-      </List>
-    )
-  );
+  // Iterate over the recipes array to create a list of RecipeItem components
+  const recipeItems = recipes.map((item, index) => (
+    <List styleType="none" key={index}>
+      {' '}
+      {/* Use List component from Chakra UI to display items without list-style bullets.  */}
+      <RecipeItem clickFn={clickFn} recipe={item} />
+      {/*Pass each recipe and the clickFn to the RecipeItem component*/}
+    </List>
+  ));
 
   return (
-    <Flex gap={16} w={['full', '75%']} flexWrap="wrap" flexDir={{ base: 'column', sm: 'row' }} justify="center" alignItems="center">   
-        {recipeItems}
+    // Flex container to layout the recipe items responsively
+    <Flex gap={16} w={['full', '75%']} flexWrap="wrap" flexDir={{ base: 'column', sm: 'row' }} justify="center" alignItems="center">
+      {recipeItems} {/* Render the list of RecipeItem components*/}
     </Flex>
   );
 };
