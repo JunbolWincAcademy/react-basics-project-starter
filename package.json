@@ -1,7 +1,7 @@
 {
   "name": "json-server-react-restaurant",
   "version": "1.0.0",
-  "homepage": "http://JunbolWincAcademy.github.io/json-server-react-restaurant",
+  "homepage": "https://junbolwincacademy.github.io/react-basics-project-starter/",
   "description": "A simple React app to search for recipes",
   "scripts": {
     "dev": "vite",
