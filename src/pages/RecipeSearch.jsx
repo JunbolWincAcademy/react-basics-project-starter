@@ -3,7 +3,8 @@ import { Center, Heading } from '@chakra-ui/react';
 import { RecipeListPage } from './RecipeListPage';
 import { TextInput } from '../components/ui/TextInput';
 
-export const RecipeSearch = ({ clickFn }) => {// the clickFn prop argument is sent by the App.jsx: <RecipeSearch clickFn={setUserRecipe} />
+export const RecipeSearch = ({ clickFn }) => {
+  // the clickFn prop argument is sent by the App.jsx: <RecipeSearch clickFn={setUserRecipe} />
   // State for search input field
   const [searchField, setSearchField] = useState('');
   // State to store the fetched recipes
@@ -11,7 +12,7 @@ export const RecipeSearch = ({ clickFn }) => {// the clickFn prop argument is se
 
   useEffect(() => {
     // Fetch recipes from the server when the component mounts
-    fetch('http://localhost:3000/data')
+    fetch('https://json-server-react-restaurant-331e07840c42.herokuapp.com/data')
       .then((response) => response.json())
       .then((data) => {
         // Store the fetched recipes in state
@@ -41,3 +42,5 @@ export const RecipeSearch = ({ clickFn }) => {// the clickFn prop argument is se
     </>
   );
 };
+
+// just to test
