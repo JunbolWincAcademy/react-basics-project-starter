@@ -12,7 +12,8 @@ export const RecipeSearch = ({ clickFn }) => {
 
   useEffect(() => {
     // Fetch recipes from the server when the component mounts
-    fetch('https://json-server-react-restaurant-331e07840c42.herokuapp.com/data')
+    fetch('http://localhost:3000/data')
+      // fetch('https://json-server-react-restaurant-331e07840c42.herokuapp.com/data')
       .then((response) => response.json())
       .then((data) => {
         // Store the fetched recipes in state
